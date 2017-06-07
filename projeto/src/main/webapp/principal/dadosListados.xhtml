@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="template.xhtml">
+
+            <ui:define name="content">
+                <center style=" margin: auto 0;">				
+					<h1>Dados Pessoais </h1>
+					
+						<h:form id="form"  >
+							<h:panelGrid columns="2"  >
+								<p:outputLabel  value="Nome: " />
+								<p:outputLabel value="#{controlePessoa.objetoPessoa.nome}" />
+								<p:outputLabel  value="E-mail: " />
+								<p:outputLabel  value="#{controlePessoa.objetoPessoa.email}"  />
+								<p:outputLabel  value="Telefone: " />
+								<p:outputLabel  value="#{controlePessoa.objetoPessoa.telefone}"  />
+
+								
+								
+							</h:panelGrid>
+							
+							<p:commandButton value="Alterar Meus dados "  action="./perfil.jsf?faces-redirect=true"  update=":form"  />
+						</h:form>
+				</center>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
