@@ -7,23 +7,31 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-     <h:form>
-    <p:panel id="panel" header="Form" style="margin-bottom:10px;">
-        <p:messages id="messages" />
-        <h:panelGrid columns="2" cellpadding="5">
-            <h:outputLabel for="name" value="Standard Label:" />
-            <p:inputText id="name" required="true" />
- 
-            <p:outputLabel for="extended" value="Extended Label:" />
-            <p:inputText id="extended" required="true" />
- 
-            <p:outputLabel for="number" value="Number:" />
-            <p:spinner id="number" value="0"/>
-        </h:panelGrid>
-    </p:panel>
- 
-    <p:commandButton value="Submit" update="panel"  />
-</h:form>
+        <h:form>
+            <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+                <p:messages id="messages" />
+                <h:panelGrid columns="5" cellpadding="20">
+                    <h:outputLabel for="name" value="IP:" />
+
+                    <p:inputText id="tes1" required="true" value="#{controle.ipcampo1}" />
+                    <p:inputText id="tes" required="true" value="#{controle.ipcampo2}" />
+                    <p:inputText id="tes2" required="true" value="#{controle.ipcampo3}"/>
+                    <p:inputText id="tes3" required="true" value="#{controle.ipcampo4}"/>
+
+                </h:panelGrid>
+                <h:panelGrid columns="5" cellpadding="15">
+                    <h:outputLabel for="name" value="Mascará:" />
+
+                    <p:inputText id="name" required="true" value="#{controle.mascara1}"/>
+                    <p:inputText id="extended" required="true"  value="#{controle.mascara2}"/>
+                    <p:inputText id="extended2" required="true"  value="#{controle.mascara3}"/>
+                    <p:inputText id="extended3" required="true"  value="#{controle.mascara4}" />
+
+                </h:panelGrid>
+            </p:panel>
+
+            <p:commandButton value="Submit" update="@form" action="#{controle.metodo()}" />
+        </h:form>
     </h:body>
 </html>
 
