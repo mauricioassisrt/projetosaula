@@ -5,6 +5,8 @@
  */
 package control;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,55 +20,72 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class controle{
  
-    private int ipcampo1,ipcampo2, ipcampo3, ipcampo4;
+    private String ipcampo1,ipcampo2, ipcampo3, ipcampo4;
     private int mascara1,mascara2, mascara3, mascara4;
-
+    List<String> lista = new ArrayList<>();
+    
     public void metodo(){
         if(mascara4==128||mascara4==192||mascara4==224||mascara4==240||mascara4==248||mascara4==252||mascara4==254){
             if(mascara4==128){
-                for (int i = 0; i < Math.pow(2, 7); i++) {
-                    System.out.println(ipcampo4++);
+                int varia =255;
+                varia =varia -mascara4;
+              
+                for (int i = 0; i < varia; i++) {
+                  
+                        System.out.println("ip"+ipcampo1+"-"+ipcampo2+"-"+ipcampo3+"-"+i);
+                        lista.add(String.valueOf(ipcampo1+ipcampo2+ipcampo3+i));
+                       
+                       
+                    }
+                 for (int i = 127; i < 254; i++) {
+                  
+                      
+                         lista.add(String.valueOf(ipcampo1+ipcampo2+ipcampo3+i));
+                         System.out.println("ip outros ip"+ipcampo1+"-"+ipcampo2+"-"+ipcampo3+"-"+i);
+                    }
+                    
                 }
-            }
+            
         }else{
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Erro ",  "Your message: " ) );
         }
     }
-    
-    
-    public int getIpcampo1() {
+
+    public String getIpcampo1() {
         return ipcampo1;
     }
 
-    public void setIpcampo1(int ipcampo1) {
+    public void setIpcampo1(String ipcampo1) {
         this.ipcampo1 = ipcampo1;
     }
 
-    public int getIpcampo2() {
+    public String getIpcampo2() {
         return ipcampo2;
     }
 
-    public void setIpcampo2(int ipcampo2) {
+    public void setIpcampo2(String ipcampo2) {
         this.ipcampo2 = ipcampo2;
     }
 
-    public int getIpcampo3() {
+    public String getIpcampo3() {
         return ipcampo3;
     }
 
-    public void setIpcampo3(int ipcampo3) {
+    public void setIpcampo3(String ipcampo3) {
         this.ipcampo3 = ipcampo3;
     }
 
-    public int getIpcampo4() {
+    public String getIpcampo4() {
         return ipcampo4;
     }
 
-    public void setIpcampo4(int ipcampo4) {
+    public void setIpcampo4(String ipcampo4) {
         this.ipcampo4 = ipcampo4;
     }
-
+    
+    
+   
     public int getMascara1() {
         return mascara1;
     }
