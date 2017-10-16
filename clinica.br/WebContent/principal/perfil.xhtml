@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="template.xhtml">
+
+            <ui:define name="content">
+            <center>
+                <div class="jumbotron" >
+                
+				<center style="margin: auto 0;">						
+					<h2>Editar Perfil</h2>
+						<h:form id="form">
+							
+							 <h:panelGrid columns="2">
+						
+								<p:outputLabel for="nome" value="Nome: " />
+							
+							 
+								<p:inputText id="nome" value="#{controleMedico.objetoMedico.nome}" required="true" />
+							
+							
+								<p:outputLabel for="email" value="E-mail: " />
+								<p:inputText id="email" value="#{controleMedico.objetoMedico.email}" required="true" />
+								
+								<p:outputLabel for="pwd1" value="Senha: *" />
+								<p:password id="pwd1" value="#{controleMedico.objetoMedico.senha}" match="pwd2" required="true" />
+
+								<p:outputLabel for="pwd2" value="Confirmar Senha:" />
+								<p:password id="pwd2" value="#{controleMedico.objetoMedico.senha}" required="true" />
+							    
+							 
+            			
+            			    
+							</h:panelGrid>
+					
+							
+							<p:commandButton value="Alterar" action="#{controleMedico.inserir()}"  update=":form" />
+						</h:form>
+				</center>
+
+</div>
+</center>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

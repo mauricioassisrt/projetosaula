@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Login</title>
+	<link href="resources/css/login.css" rel="stylesheet" media="screen" />
+	<link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+</h:head>
+<h:body class="corpo">
+	<div class="container">
+	
+		<div class="row-fluid">
+		
+		<center>
+        	
+		</center>
+		<div class="jumbotron">
+			<div class="panel-heading">  <br/></div>
+			 <div class="panel-body">
+			 
+           <center>
+			<div  >
+				
+				<form class="form-signin" action="j_spring_security_check" method="post">
+					
+					<!--  <h:outputLabel value="#{graficosGeral.metodo()}" style="font-size:30px" />-->
+						
+					
+					<p:inputText id="j_username" type="text" styleClass="form-control input-login" placeholder="Email"/>
+					<br/>
+					<p:inputText id="j_password" type="password"  styleClass="form-control input-login" placeholder="Senha"  /> <br/>
+				
+					<h:commandButton value="Entrar" class="btn btn-lg btn-primary btn-block"/> 
+				<br/>
+				<h:outputText  style="font-size:30px" styleClass="col-md-6 col-md-offset-3 alert alert-primary" value="Usuário ou Senha Incorreto!" rendered="#{param.error==true}" />
+				<br/>
+				</form>
+			
+				
+			</div>
+			</center>
+			<center>
+			<hr/>
+			<a href="./recuperar.jsf">Recuperar Senha </a>
+			</center>
+		</div>
+		</div>
+		</div>
+	</div>
+</h:body>
+</html>
