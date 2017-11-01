@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="formTabela">
+	 <p:growl id="messages" sticky="true" showDetail="true" life="1" />  
+                
+     <div class="panel panel-default">
+  <div class="panel-heading"> <h2 style="text-align: center"> Lista de Pacientes   </h2><br/></div>
+  <div class="panel-body">
+      <p:commandButton value="Novo" 
+                                     oncomplete="PF('dialogcadastro').show();"
+                                     update=":formCadastro" 
+                                     actionListener="#{controlePaciente.novo()}"
+                                     styleClass="btn btn-primary "/>
+                    <p:dataTable value="#{controlePaciente.lista}" var="obj" styleClass="table" 
+                                 rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        >
+                        <f:facet name="header">
+                           
+                        </f:facet>
+
+                        <p:column sortBy="#{obj.nome}" filterBy="#{obj.nome}" > 
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText id="atividade" value="#{obj.nome}" />
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton value="Alterar" 
+                                             update=":formCadastro" 
+                                             oncomplete="PF('dialogcadastro').show();">
+                                <f:setPropertyActionListener value="#{obj}"
+                                                             target="#{controlePaciente.objetoPaciente}"/>
+                            </p:commandButton>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Apagar" 
+                                             actionListener="#{controlePaciente.excluir(obj)}"
+                                             update="@form"
+                                             
+                                             >
+                                <p:confirm header="Confirmação " message="Deseja Apagar "/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                     </div>
+                
+                </div>
+                </h:form>
+                
+               
+                <p:dialog widgetVar="dialogcadastro" header="Cadastro de Paciente " modal="true" appendTo="@(body)">
+                    <h:form id="formCadastro">
+                   
+                       
+                        <h:panelGrid id="grid" columns="3">
+                          
+                            <h:outputLabel for="nome" style="font-weight:bold" value="Nome"/>
+                            <p:inputText id="nome"  placeholder="Ex José" value="#{controlePaciente.objetoPaciente.nome}" required="true" requiredMessage="Campo Nome obrigatorio"/>
+                            <p:message for="nome"/>
+                            
+                             <p:outputLabel for="sexo" value="Sexo: " />
+           					<p:selectOneMenu id="sexo" value="#{controlePaciente.objetoPaciente.sexo}" style="width:100%"  required="true" requiredMessage="Campo obrigatório" >
+            					<f:selectItem itemLabel="" itemValue="" />
+            					<f:selectItem itemLabel="Masculino" itemValue="masculino" />
+            				 	<f:selectItem itemLabel="Feminino" itemValue="feminino" />
+            			    </p:selectOneMenu>
+            			     <p:message for="sexo"/>
+            			       
+                            <p:outputLabel for="popup" value="Data de Nascimento" />
+      						<p:calendar id="popup" value="#{controlePaciente.objetoPaciente.dtNascimento}"  required="true" requiredMessage="Campo data Nascimento obrigatorio"/>	  
+                          	 <p:message for="popup"/>
+                          	 
+                             <p:outputLabel for="telefone" value="Telefone" />
+       						 <p:inputMask id="telefone" value="#{controlePaciente.objetoPaciente.telefone}" mask="(99) 9999-9999" required="true" requiredMessage="Campo Telefone obrigatorio"/>
+ 							 <p:message for="telefone"/>
+ 							 
+ 							 
+ 							 <p:outputLabel for="cel" value="Celular" />
+       						 <p:inputMask id="cel" value="#{controlePaciente.objetoPaciente.telefone}" mask="(99) 99999-9999" />
+ 							 <p:message for="cel"/>
+ 							 
+ 							<h:outputLabel for="ende" style="font-weight:bold" value="Endereço"/>
+                            <p:inputText id="ende"  placeholder="Rua c" value="#{controlePaciente.objetoPaciente.endereco}" required="true" requiredMessage="Campo endereço obrigatorio"/>
+                            <p:message for="ende"/>
+ 							 
+ 							 <h:outputLabel for="num" style="font-weight:bold" value="Número"/>
+                            <p:inputText id="num"  placeholder="Ex José" value="#{controlePaciente.objetoPaciente.numero}" required="true" requiredMessage="Campo Número obrigatorio"/>
+                            <p:message for="num"/>
+                            
+                            <h:outputLabel for="bair" style="font-weight:bold" value="Bairro"/>
+                            <p:inputText id="bair"  placeholder="Centro" value="#{controlePaciente.objetoPaciente.bairro}" required="true" requiredMessage="Campo Bairro obrigatorio"/>
+                            <p:message for="bair"/>
+                            
+ 							 
+			             </h:panelGrid>
+                        
+                        <p:commandButton value="Salvar" 
+                                         validateClient="true" 
+                                         ajax="false" 
+                                         oncomplete="PF('cadastro').hide()"
+                                         action="#{controlePaciente.inserir()}" 
+										 update=":formTabela" icon="ui-icon-disk" style="width: 100%"/>
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

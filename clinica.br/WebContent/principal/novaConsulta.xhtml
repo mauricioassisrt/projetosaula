@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="formTabela">
+	 <p:growl id="messages" sticky="true" showDetail="true" life="1" />  
+              
+  		  <p:fieldset legend="Prontuario de Consulta" style="margin-bottom:20px;width:100%">
+        <h:panelGrid width="100%" >
+        	<h:outputLabel value="Nome do Paciente: #{controleProntuario.nomePaciente}" />
+        	<h2>Informações:</h2>
+            <p:inputTextarea autoResize="true" placeholder="#{controleProntuario.informacoes}" style="width:100%"/>
+            <h2>Informações para nova Consulta</h2>
+           <p:inputTextarea cols="100" style="width:100%" value="#{controleProntuario.informacoes2}"/>
+        	
+        </h:panelGrid>
+    </p:fieldset>
+  		
+  		   
+                        <p:commandButton value="Salvar" 
+                                         validateClient="true" 
+                                         ajax="false" 
+                                         styleClass="btn btn-primary "
+                                         action="#{controleProntuario.realizarConsulta()}" 
+										 update=":formTabela" icon="ui-icon-disk" style="width: 100%"/>
+  		
+  		         </h:form>
+                
+               
+                
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -97,6 +97,13 @@ public class DAOGenerico {
         em.getTransaction().commit();
         return q.getResultList();
     }
+    public List listaCondicao2(Class classe, String condicao) {  //busca por qualquer atributoinformado
+        em = Banco.getInstancia().getEm();
+        em.getTransaction().begin();
+        Query q = em.createQuery("from " + classe.getSimpleName() + "  AS " + condicao);
+        em.getTransaction().commit();
+        return q.getResultList();
+    }
     public List listaOrder(Class classe, String condicao) {  //busca por qualquer atributoinformado
         em = Banco.getInstancia().getEm();
         em.getTransaction().begin();
