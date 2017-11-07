@@ -14,14 +14,12 @@
                 <h:form id="formTabela">
 	 <p:growl id="messages" sticky="true" showDetail="true" life="1" />  
                 
-     <div class="panel panel-default">
-  <div class="panel-heading"> <h2 style="text-align: center"> Lista de Pacientes   </h2><br/></div>
-  <div class="panel-body">
-      <p:commandButton value="Novo" 
+    <p:fieldset legend="Pacientes" style="margin-bottom:20px;width:100%">
+     				<p:commandButton value="Novo" 
                                      oncomplete="PF('dialogcadastro').show();"
                                      update=":formCadastro" 
                                      actionListener="#{controlePaciente.novo()}"
-                                     styleClass="btn btn-primary "/>
+                                     />
                     <p:dataTable value="#{controlePaciente.lista}" var="obj" styleClass="table" 
                                  rows="10"
                                  paginator="true"
@@ -60,9 +58,7 @@
                         <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                         <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                     </p:confirmDialog>
-                     </div>
-                
-                </div>
+                  </p:fieldset>
                 </h:form>
                 
                
