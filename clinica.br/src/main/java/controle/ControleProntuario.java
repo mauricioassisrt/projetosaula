@@ -29,7 +29,9 @@ public class ControleProntuario {
 	Prontuario objetoProntuario = new Prontuario();
 	List<Paciente> listaPaciente = new ArrayList<>();
 	List<Prontuario> listaProntuario = new ArrayList<>();
+	List<Prontuario> listaExibeProntuario = new ArrayList<>();
 	String informacoes, nomePaciente, informacoes2;
+	Long idPaciente;
 	
 	public ControleProntuario() {
 		preencher();
@@ -38,11 +40,15 @@ public class ControleProntuario {
 		objetoMedico = UsuarioLogado.retornaUsuarioLogado();
 		listaPaciente = dao.lista(Paciente.class);
 		listaProntuario = dao.lista(Prontuario.class);
+
+		System.out.println("No metodo preeecher");
 	}
 	public void novo(){
 		objetoMedico = new Medico();
 		objetoPaciente = new Paciente();
 		objetoProntuario = new Prontuario();
+
+		System.out.println("No metodo Novo");
 	}
 	public void adicionarPessoaAoProntuario(Paciente objeto) throws IOException{
 		 objetoPaciente = objeto;
@@ -55,40 +61,76 @@ public class ControleProntuario {
 		for (Prontuario prontuario : listaProntuario) {
 			
 			if(objetoPaciente.getId() ==prontuario.getObjetoPaciente().getId()){
-			 informacoes = prontuario.getInformações();
+			 informacoes = prontuario.getInformacoes();
 			 nomePaciente = prontuario.getObjetoPaciente().getNome();
 			 System.out.println("IF 0----- Paciente "+objetoPaciente.getNome()+" medico "+objetoMedico.getNome()+objetoPaciente.getId());
-			 
+			 idPaciente = objetoPaciente.getId();
 			}else{
 				
 			}
 			
 		}
 		objetoPaciente = new Paciente();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("novaConsulta.jsf");
 		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("novaConsulta.jsf");
+
+		System.out.println("No metodo AdicionarProntuario");
 	}
 	
 	public void limparBean(){
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
 		session.removeAttribute("controleProntuario");
+		informacoes2 = "";
+		nomePaciente = "";
+		listaExibeProntuario = new ArrayList<>();
+		objetoPaciente = new Paciente();
+		objetoProntuario = new Prontuario();
 
 	}
 	
 	public void realizarConsulta()throws IOException{
-		
+		System.out.println("Entrou");
 		objetoProntuario.setDataProntuario(new Date());
-		objetoProntuario.setInformações(informacoes2);
+		objetoProntuario.setInformacoes(informacoes2);
+		System.out.println("Salvou"+objetoProntuario.getDataProntuario()+" Inform"+objetoProntuario.getInformacoes());
 		dao.inserir(objetoProntuario);
-		
+		System.out.println("Saiu");
+		preencher();
+		System.out.println("Preencher");
+		exibirDadosDaConsulta();
+		System.out.println("Exibir");
 		objetoProntuario = new Prontuario();
-		limparBean();
-		FacesContext.getCurrentInstance().getExternalContext().redirect("listaPacientes.jsf");
-		
+		FacesContext.getCurrentInstance().getExternalContext().redirect("consultas.jsf");
+
+		System.out.println("Saiu");
 		
 	}
+	public void exibirDadosDaConsulta(){
 	
+		for (Prontuario prontuario : listaProntuario) {
+			if(prontuario.getObjetoPaciente().getId().equals(idPaciente)){
+				listaExibeProntuario.add(prontuario);
+			}
+		}
+
+		System.out.println("No metodo ExibirDadosConsulta");
+	}
+	
+	
+	
+	public List<Prontuario> getListaProntuario() {
+		return listaProntuario;
+	}
+	public void setListaProntuario(List<Prontuario> listaProntuario) {
+		this.listaProntuario = listaProntuario;
+	}
+	public List<Prontuario> getListaExibeProntuario() {
+		return listaExibeProntuario;
+	}
+	public void setListaExibeProntuario(List<Prontuario> listaExibeProntuario) {
+		this.listaExibeProntuario = listaExibeProntuario;
+	}
 	public Medico getObjetoMedico() {
 		return objetoMedico;
 	}

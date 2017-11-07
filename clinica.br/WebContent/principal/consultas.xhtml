@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="formTabela">
+	
+                   
+   	<p:fieldset legend="Todas as consultas realizadas ao Paciente" style="margin-bottom:20px;width:100%">
+   								 <h:commandButton value="Nova Consulta"
+                      					 action="./listapacientes.jsf?faces-redirect=true" 
+                      					 actionListener="#{controleProntuario.limparBean()}"  
+                      					 styleClass="btn btn-primary "/>
+                      					 
+                    <p:dataTable value="#{controleProntuario.listaExibeProntuario}" var="obj" styleClass="table" 
+                                 rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 emptyMessage="Nenhum valor encontrado"
+                        >
+                        <f:facet name="header">
+                           
+                        </f:facet>
+
+                        <p:column sortBy="#{obj.objetoPaciente.nome}" filterBy="#{obj.objetoPaciente.nome}" > 
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText id="atividade" value="#{obj.objetoPaciente.nome}" />
+                        </p:column>
+                        
+						   <p:column sortBy="#{obj.dataProntuario}" filterBy="#{obj.dataProntuario}" > 
+                            <f:facet name="header">
+                                <h:outputText value="Data da Consulta" />
+                            </f:facet>
+                            <h:outputText id="atividade2" value="#{obj.dataProntuario}" >
+                            	 <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3"/>
+                            </h:outputText>
+                        </p:column>
+                        
+                         
+                        
+						   <p:column sortBy="#{obj.informacoes}" filterBy="#{obj.informacoes}"  > 
+                            <f:facet name="header">
+                                <h:outputText value="Informações " />
+                            </f:facet>
+                            <h:outputText id="atividade3" value="#{obj.informacoes}"  escape="false" />
+                        </p:column>
+						
+                       
+                    </p:dataTable>
+                   
+                   </p:fieldset>
+                </h:form>
+                
+              
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -18,7 +18,8 @@ public class Prontuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String informações;
+	@Column(length=6000)
+	private String informacoes;
 	@ManyToOne
 	private Medico objetoMedico;
 	@ManyToOne
@@ -35,11 +36,12 @@ public class Prontuario implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getInformações() {
-		return informações;
+	
+	public String getInformacoes() {
+		return informacoes;
 	}
-	public void setInformações(String informações) {
-		this.informações = informações;
+	public void setInformacoes(String informacoes) {
+		this.informacoes = informacoes;
 	}
 	public Medico getObjetoMedico() {
 		return objetoMedico;
