@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="paciente" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="53364c79-2add-43f4-91cd-3f0af5937d00">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="tcc"/>
+	<parameter name="idpessoa" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT projetoclinica.medico.nome,
+	projetoclinica.medico.email,
+	projetoclinica.prontuario.`dataProntuario`,
+	projetoclinica.prontuario.informacoes,
+	projetoclinica.paciente.bairro,
+	projetoclinica.paciente.sexo,
+	projetoclinica.paciente.nome,
+	projetoclinica.paciente.endereco,
+	projetoclinica.paciente.celular,
+	projetoclinica.paciente.`dtNascimento`,
+	projetoclinica.paciente.numero,
+	projetoclinica.paciente.telefone
+FROM projetoclinica.prontuario
+	INNER JOIN projetoclinica.medico ON 
+	 projetoclinica.prontuario.`objetoMedico_id` = projetoclinica.medico.id 
+	INNER JOIN projetoclinica.paciente ON 
+	 projetoclinica.prontuario.`objetoPaciente_id` = projetoclinica.paciente.id
+	 WHERE projetoclinica.paciente.id =  $P{idpessoa}]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="dataProntuario" class="java.sql.Date"/>
+	<field name="informacoes" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="COLUMN_7" class="java.lang.String"/>
+	<field name="endereco" class="java.lang.String"/>
+	<field name="celular" class="java.lang.String"/>
+	<field name="dtNascimento" class="java.sql.Timestamp"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="173" splitType="Stretch">
+			<image>
+				<reportElement x="20" y="15" width="70" height="74" uuid="537233e9-4ec6-431d-b211-8dcb27842d19"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="120" y="30" width="375" height="30" uuid="dd062a9a-12d5-4c32-b92a-17f93d3cf9ee"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informações do protuário do paciente ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="89" width="108" height="19" uuid="5317395e-2a46-4a04-9a35-c7c19adc3eaa"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Paciente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="89" width="180" height="19" uuid="b9f4c787-1105-4987-8fdd-8fc779ebc331"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_7}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="110" width="119" height="18" uuid="1cc60c7c-0cd9-4515-b52e-affb6567baed"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Nascimento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="109" width="100" height="18" uuid="fa347b71-c809-4821-b192-7d9128840647"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtNascimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="109" width="100" height="18" uuid="2d3174d0-e6f4-4c35-999c-06e975843c7f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="89" width="100" height="18" uuid="59837771-8236-46f9-bffc-c90ef4f0d856"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="109" width="100" height="18" uuid="e7acc10e-d8cd-4cec-a77e-f2608f5f08a3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="444" y="89" width="100" height="18" uuid="4ae8e426-daa8-45f1-9900-dbefa21b8a47"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número da casa]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="133" width="100" height="18" uuid="6bcd3ec3-b3bb-478a-b6a3-ac4f6731d7ff"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="404" y="131" width="40" height="23" uuid="e4b7bc36-001f-4a09-bfca-f7b3cf61b877"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="132" width="120" height="20" uuid="ad6d1c14-fb74-4c88-bff8-8779c1362544"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="230" y="133" width="50" height="19" uuid="15663aab-b1ec-4bd4-9abf-12384432a03a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="133" width="80" height="24" uuid="060845a1-1794-481c-9920-1f8b7f1e11bd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="133" width="30" height="24" uuid="559b292b-3445-4738-ba44-91f9eb95b65a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="73" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="40" width="540" height="30" uuid="50247d09-490d-48ff-89db-73df1a710d3e"/>
+				<textFieldExpression><![CDATA[$F{informacoes}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy">
+				<reportElement x="170" y="10" width="144" height="30" uuid="b4c24b45-37e3-4b85-bdb7-a714ad5c906e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataProntuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="10" width="120" height="30" uuid="95637e40-720f-4ee3-ba70-9bec5ff93bc5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data da Consulta ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
