@@ -12,12 +12,12 @@
 
             <ui:define name="content">
             <center>
-                <div class="jumbotron" >
+                
                 
 				<center style="margin: auto 0;">						
-					<h2>Editar Perfil</h2>
+					
 						<h:form id="form">
-							
+						<p:fieldset legend=" Dados da Conta " style="margin-bottom:20px;width:100%">
 							 <h:panelGrid columns="2">
 						
 								<p:outputLabel for="nome" value="Nome: " />
@@ -42,10 +42,11 @@
 					
 							
 							<p:commandButton value="Alterar" action="#{controleMedico.inserir()}"  update=":form" />
+							</p:fieldset>
 						</h:form>
 				</center>
 
-</div>
+
 </center>
             </ui:define>
 

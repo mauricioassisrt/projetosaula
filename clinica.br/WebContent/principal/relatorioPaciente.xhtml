@@ -12,7 +12,7 @@
 	
             <ui:define name="content">
        <h:form id="formTabela">
-               
+               <p:fieldset legend="	Relatorio de Pacientes " style="margin-bottom:20px;width:100%">
 			
 			   <p:dataTable value="#{controleRelatorios.listaPaciente}" var="obj" styleClass="table" 
                                  rows="10"
@@ -20,12 +20,12 @@
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         >
                         <f:facet name="header">
-                            <h1>  Lista de Animais</h1> 
+                          
                         </f:facet>
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Animal" />
+                                <h:outputText value="Paciente" />
                             </f:facet>
                             <h:outputText id="animal" value="#{obj.nome}" />
                         </p:column>
@@ -42,12 +42,12 @@
                         </p:column>
                         
                     </p:dataTable>
-                      
+                      </p:fieldset>
                 </h:form>
-                  <p:dialog widgetVar="dialogcadastro" header="Animal" modal="true" appendTo="@(body)" responsive="true">
+                  <p:dialog widgetVar="dialogcadastro" header="Paciente" modal="true" appendTo="@(body)" responsive="true">
                     <h:form id="formCadastro">
                         <h:panelGrid id="grid" columns="2">
-                          <h:outputLabel for="nome" style="font-weight:bold" value="Nº do Brinco"/>
+                          <h:outputLabel for="nome" style="font-weight:bold" value="Nome  --- "/>
                             <p:outputLabel id="nome" value="#{controleRelatorios.objetoPaciente.nome}" style="width:100%"  />
                             
                           

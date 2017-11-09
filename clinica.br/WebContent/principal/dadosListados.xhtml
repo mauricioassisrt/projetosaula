@@ -12,15 +12,13 @@
 
             <ui:define name="content">
             <center>
-            <div class="panel panel-default" >
-			  <!-- Default panel contents -->
-			  <div class="panel-heading">Dados da Conta </div>
-			  <div class="panel-body">
-			   
-			  </div>				
+            
+           
+			 
 			  
 					
 						<h:form id="form"  >
+						<p:fieldset legend=" Dados da Conta " style="margin-bottom:20px;width:100%">
 							<h:panelGrid columns="2"  style="text-align:center" >
 								<p:outputLabel  value="Nome: " />
 								<p:outputLabel value="#{controleMedico.objetoMedico.nome}" />
@@ -30,10 +28,11 @@
 							</h:panelGrid>
 							
 							<p:commandButton value="Alterar Meus dados "  action="./perfil.jsf?faces-redirect=true"  update=":form"  />
+							</p:fieldset>
 						</h:form>
 						
 				
-				</div>
+				
 				</center>
             </ui:define>
 

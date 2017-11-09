@@ -12,12 +12,13 @@
 
             <ui:define name="content">
                 <h:form id="formTabela">
-	 <p:growl id="messages" sticky="true" showDetail="true" life="5000" />
+                <p:fieldset legend=" Lista de Usúarios do Sistema  " style="margin-bottom:20px;width:100%">
+	 			<p:growl id="messages" sticky="true" showDetail="true" life="5000" />
                     <p:commandButton value="Novo" 
                                      oncomplete="PF('dialogcadastro').show();"
                                      update=":formCadastro" 
                                      actionListener="#{controleMedico.novo()}"
-                                     styleClass="btn btn-default"/>
+                                    />
 
                     <p:dataTable value="#{controleMedico.lista}" var="obj" styleClass="table" 
                                  rows="10"
@@ -25,7 +26,7 @@
                                  paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         >
                         <f:facet name="header">
-                            <h1>  Lista de Usúarios do Sistema </h1> 
+                        
                         </f:facet>
 
                         <p:column>
@@ -52,12 +53,13 @@
                             </p:commandButton>
                         </p:column>
                     </p:dataTable>
+                    </p:fieldset>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                         <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                         <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                     </p:confirmDialog>
                 </h:form>
-                <p:dialog widgetVar="dialogcadastro" header="Cadastro de Medico de Animal" modal="true" appendTo="@(body)">
+                <p:dialog widgetVar="dialogcadastro" header="Cadastro de Medico " modal="true" appendTo="@(body)">
                     <h:form id="formCadastro">
                    
                        

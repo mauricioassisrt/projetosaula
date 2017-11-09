@@ -8,6 +8,7 @@ package controle;
 import banco.Banco;
 import banco.DAOGenerico;
 import entidades.Paciente;
+import entidades.Prontuario;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class ControleRelatorios {
 	  private Date dataFinal = new Date();
 	  public String novaData, novaData2;
 	  public List<Paciente> listaPaciente = new ArrayList<>();
+	  public List<Prontuario> listaProntuario = new ArrayList<>();
 	  public Paciente objetoPaciente = new Paciente();
 	  private DAOGenerico dao = new DAOGenerico();
 	 
@@ -40,33 +42,34 @@ public class ControleRelatorios {
 	  public ControleRelatorios() {
 		  //lista com condição para pegar os animais em lactação
 		  listaPaciente = dao.lista(Paciente.class);
+		  listaPaciente = dao.lista(Paciente.class);
 		
 	  }
 //	//METODO DESTINADO AO ENVIO DAS DATAS QUE SERAO CONSULTADOS O RELATORIO ENTRE DT INICIAL E DATA FINAL
-//	  public void chamaRelatorioLeite() throws IOException{
-//			  
-//		  //formata a data vinda do calendario da vis�o  e converte para os parametros do banco de dados
-//		  SimpleDateFormat formatador = new SimpleDateFormat("yyyy/MM/dd");
-//		  novaData = formatador.format(dataInicial);
-//	      novaData2 = formatador.format(dataFinal);
-//	      
-//	      // feito uma consulta no banco de dados entre as datas informadas
-//		  lista = dao.listaCondicao(Leite.class, "dataDoValor BETWEEN ' " + novaData + " ' AND ' " + novaData2 + " ' ");
-//		//verifica se a lista obitida na consltao possui algum item caso nao possua exibe a msg 
-//		  if(lista.size()==0){
-//			  FacesContext faces = FacesContext.getCurrentInstance();
-//			  faces.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"","Nenhuma valor cadastrado entre essa data! "));		
-//		  }else{
-//			  	//PARAMETRO JASPER DESTINADO PARA PASSAGEM DOS PARAMETROS QUE SERAO EXIBIDOS NO RELATORIO
-//			  	HashMap parameters = new HashMap<String, String>();
-//			  	//O VALOR DENTRO DAS "ASPAS" DEVE SER O MESMO DO CONFIGURADO NO RELATORIO JASPER 	
-//				parameters.put("datainicial", novaData);
-//				parameters.put("datafinal", novaData2);
-//			
-//				ChamaRelatorio.imprimeRelatorio("leite2.jasper", parameters, "leite");
-//		  }
-//		    
-//	  }
+	  public void chamaRelatorioGeralPaciente() throws IOException{
+			  
+		  //formata a data vinda do calendario da vis�o  e converte para os parametros do banco de dados
+		  SimpleDateFormat formatador = new SimpleDateFormat("yyyy/MM/dd");
+		  novaData = formatador.format(dataInicial);
+	      novaData2 = formatador.format(dataFinal);
+	      
+	      // feito uma consulta no banco de dados entre as datas informadas
+		  listaProntuario = dao.listaCondicao(Prontuario.class, "dataProntuario BETWEEN ' " + novaData + " ' AND ' " + novaData2 + " ' ");
+		//verifica se a lista obitida na consltao possui algum item caso nao possua exibe a msg 
+		  if(listaProntuario.size()==0){
+			  FacesContext faces = FacesContext.getCurrentInstance();
+			  faces.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"","Nenhuma valor cadastrado entre essa data! "));		
+		  }else{
+			  	//PARAMETRO JASPER DESTINADO PARA PASSAGEM DOS PARAMETROS QUE SERAO EXIBIDOS NO RELATORIO
+			  	HashMap parameters = new HashMap<String, String>();
+			  	//O VALOR DENTRO DAS "ASPAS" DEVE SER O MESMO DO CONFIGURADO NO RELATORIO JASPER 	
+				parameters.put("datainicial", novaData);
+				parameters.put("datafinal", novaData2);
+			
+				ChamaRelatorio.imprimeRelatorio("pordata.jasper", parameters, "pordata");
+		  }
+		    
+	  }
 	  //METODO DESTINADO AO ENVIO DAS DATAS QUE SERAO CONSULTADOS O RELATORIO ENTRE DT INICIAL E DATA FINAL
 	  public void chamaRelatorioAnimal() throws IOException{
 			  

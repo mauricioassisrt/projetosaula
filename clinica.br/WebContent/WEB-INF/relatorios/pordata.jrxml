@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pordata" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e82e6d0d-e1a9-4bc2-9a8d-c70e5c8f321c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="tcc"/>
+	<parameter name="datainicial" class="java.lang.String"/>
+	<parameter name="datafinal" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT projetoclinica.prontuario.`dataProntuario`,
+	projetoclinica.prontuario.informacoes,
+	projetoclinica.paciente.bairro,
+	projetoclinica.paciente.celular,
+	projetoclinica.paciente.`dtNascimento`,
+	projetoclinica.paciente.endereco,
+	projetoclinica.paciente.nome,
+	projetoclinica.paciente.numero,
+	projetoclinica.paciente.sexo,
+	projetoclinica.paciente.telefone
+FROM projetoclinica.prontuario
+	INNER JOIN projetoclinica.paciente ON 
+	 projetoclinica.prontuario.`objetoPaciente_id` = projetoclinica.paciente.id WHERE projetoclinica.prontuario.`dataProntuario`BETWEEN $P{datainicial} AND $P{datafinal}]]>
+	</queryString>
+	<field name="dataProntuario" class="java.sql.Date"/>
+	<field name="informacoes" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="celular" class="java.lang.String"/>
+	<field name="dtNascimento" class="java.sql.Timestamp"/>
+	<field name="endereco" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="140">
+			<textField pattern="h:mm a">
+				<reportElement x="140" y="20" width="88" height="20" forecolor="#000000" uuid="fe781493-518e-4ac6-ae63-7eb95c63dae5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="177" y="51" width="200" height="30" uuid="25535315-4410-4077-8318-3b5e850d66b5"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Protuário de pacientes ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy h:mm a">
+				<reportElement x="10" y="20" width="130" height="20" forecolor="#000000" uuid="95d26cb1-dcee-49da-9e1c-e5b4da5d204e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="15" y="51" width="70" height="74" uuid="734fa24e-4d96-41d5-a3c3-eac64a91c9aa"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<textField evaluationTime="Report">
+				<reportElement x="505" y="21" width="40" height="20" forecolor="#000000" uuid="dd5ee587-dd8e-4dae-bb5d-3a75bcf105ae"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="21" width="80" height="20" forecolor="#000000" uuid="a83540db-d682-47a3-9450-573571fd584f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="320" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="40" width="100" height="30" uuid="24f36c5d-bdac-460d-aae5-f6e57ea7b51a"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataProntuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="30" uuid="d8cf5ddc-4151-46bc-a922-f5c9f0853c84"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data do Prontuario]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="120" width="560" height="200" uuid="74128974-930a-4ebd-bff5-39682ead6883"/>
+				<textFieldExpression><![CDATA[$F{informacoes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="80" width="70" height="20" uuid="cfa79632-3597-48ab-8dd0-90084caa95b6"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[informações]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="10" width="250" height="30" uuid="c6e7c2b2-cfc3-426c-a1b1-95c51fe09c64"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="10" width="40" height="30" uuid="532a826a-1c47-4de5-9c4e-b6c5f81ce2d6"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="370" y="40" width="100" height="30" uuid="ac5989ec-4eaa-4679-a49d-b8adddee6cb5"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="40" width="30" height="30" uuid="8d86b454-9550-457d-a22d-a269b3f47fdd"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[sexo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-3" y="9" width="561" height="1" uuid="9df1acb0-2ce7-4c48-a7df-f6fe4dc585a5"/>
+			</line>
+			<line>
+				<reportElement x="0" y="110" width="561" height="1" uuid="0d288e4e-2fa8-47ff-9ea6-8685dee365c5"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

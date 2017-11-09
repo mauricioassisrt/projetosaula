@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 
 import banco.DAOGenerico;
 import entidades.Paciente;
+import entidades.Prontuario;
 
 @ManagedBean
 @ViewScoped
@@ -22,6 +23,7 @@ public class ControlePaciente {
 	private Paciente objetoPaciente = new Paciente();
     private DAOGenerico dao = new DAOGenerico();
     private List<Paciente> lista = new ArrayList<>();
+    private List<Prontuario> listaProntuario = new ArrayList<>();
 
     public ControlePaciente(){
     	
@@ -62,6 +64,7 @@ public class ControlePaciente {
 
     private void preencher() {
         lista = dao.lista(Paciente.class);
+        listaProntuario = dao.lista(Prontuario.class);
     }
 
     public Paciente getObjetoPaciente() {
@@ -79,6 +82,14 @@ public class ControlePaciente {
     public void setLista(List<Paciente> lista) {
         this.lista = lista;
     }
+
+	public List<Prontuario> getListaProntuario() {
+		return listaProntuario;
+	}
+
+	public void setListaProntuario(List<Prontuario> listaProntuario) {
+		this.listaProntuario = listaProntuario;
+	}
     
 
 	
