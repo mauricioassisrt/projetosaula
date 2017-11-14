@@ -41,8 +41,8 @@ public class ControleRelatorios {
 	  
 	  public ControleRelatorios() {
 		  //lista com condição para pegar os animais em lactação
-		  listaPaciente = dao.lista(Paciente.class);
-		  listaPaciente = dao.lista(Paciente.class);
+		  listaPaciente = dao.listaCondicao(Paciente.class, "consulta = 'sim'");
+		  
 		
 	  }
 //	//METODO DESTINADO AO ENVIO DAS DATAS QUE SERAO CONSULTADOS O RELATORIO ENTRE DT INICIAL E DATA FINAL

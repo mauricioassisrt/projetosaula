@@ -70,7 +70,7 @@ public class ControleProntuario {
 			}
 			
 		}
-		objetoPaciente = new Paciente();
+		
 		
 		FacesContext.getCurrentInstance().getExternalContext().redirect("novaConsulta.jsf");
 
@@ -90,6 +90,12 @@ public class ControleProntuario {
 	}
 	
 	public void realizarConsulta()throws IOException{
+		if(objetoPaciente !=null){
+			objetoPaciente.setConsulta("sim");
+			dao.salvar(objetoPaciente);
+		}else{
+			System.out.println("Erro");
+		}
 		System.out.println("Entrou");
 		objetoProntuario.setDataProntuario(new Date());
 		objetoProntuario.setInformacoes(informacoes2);

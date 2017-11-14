@@ -26,8 +26,8 @@ public class Paciente implements Serializable {
 	private String celular;
 	private String numero;
 	private String bairro;
+	private String consulta;
 	
-
 	public Long getId() {
 		return this.id;
 	}
@@ -49,6 +49,15 @@ public class Paciente implements Serializable {
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}   
+	
+	public String getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(String consulta) {
+		this.consulta = consulta;
+	}
+
 	public Date getDtNascimento() {
 		return this.dtNascimento;
 	}
